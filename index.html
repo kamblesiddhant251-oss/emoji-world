@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emoji World 🌍</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#10111b;color:white;
+ font-family:Arial,sans-serif;text-align:center
+}
+header{padding:25px 12px;background:#191a2b}
+h1{font-size:32px;color:#7cfcaa}
+p{color:#c9c9d8}
+input,select{
+ padding:13px;margin:8px;border-radius:12px;
+ border:1px solid #444;background:#242538;
+ color:white;font-size:16px;max-width:90%
+}
+#categories{padding:10px}
+button{
+ cursor:pointer;border:0;border-radius:10px;
+ padding:10px;margin:4px;font-size:15px
+}
+.cat{background:#292b42;color:white}
+.cat:active{background:#7cfcaa;color:black}
+#grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(75px,1fr));
+ gap:10px;padding:15px;max-width:1000px;margin:auto
+}
+.item{
+ background:#202133;border-radius:12px;padding:12px 4px;
+ cursor:pointer;border:1px solid #333
+}
+.emoji{font-size:32px}
+.item small{display:block;color:#aaa;margin-top:5px}
+#message{color:#7cfcaa;min-height:24px}
+footer{padding:25px;color:#aaa}
+</style>
+</head>
+<body>
+<header>
+<h1>🌍 Emoji World 😀</h1>
+<p>Find your favourite emoji and copy it instantly!</p>
+<input id="search" placeholder="🔍 Search emoji..." oninput="render()">
+<br>
+<select id="category" onchange="render()">
+<option value="All">🌈 All Emojis</option>
+<option value="Smileys">😀 Smileys</option>
+<option value="Hearts">❤️ Hearts</option>
+<option value="Animals">🐱 Animals</option>
+<option value="Food">🍕 Food</option>
+<option value="Nature">🌳 Nature</option>
+<option value="Activities">⚽ Activities</option>
+<option value="Travel">🚗 Travel</option>
+<option value="Objects">💡 Objects</option>
+<option value="Symbols">💯 Symbols</option>
+<option value="Flags">🏳️ Flags</option>
+</select>
+</header>
+
+<div id="categories">
+<button class="cat" onclick="choose('All')">🌈 All</button>
+<button class="cat" onclick="choose('Smileys')">😀 Smileys</button>
+<button class="cat" onclick="choose('Hearts')">❤️ Hearts</button>
+<button class="cat" onclick="choose('Animals')">🐱 Animals</button>
+<button class="cat" onclick="choose('Food')">🍕 Food</button>
+<button class="cat" onclick="choose('Nature')">🌳 Nature</button>
+<button class="cat" onclick="choose('Activities')">⚽ Games</button>
+<button class="cat" onclick="choose('Travel')">🚗 Travel</button>
+<button class="cat" onclick="choose('Objects')">💡 Objects</button>
+<button class="cat" onclick="choose('Symbols')">💯 Symbols</button>
+<button class="cat" onclick="choose('Flags')">🏳️ Flags</button>
+</div>
+
+<p id="count"></p>
+<div id="grid"></div>
+<p id="message">Tap any emoji to copy it! 📋</p>
+
+<footer>🌍 Emoji World | Made with ❤️</footer>
+
+<script>
+const groups={
+Smileys:"😀 😃 😄 😁 😆 😅 😂 🤣 🥲 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🫢 🫣 🤫 🤔 🫡 🤐 🤨 😐 😑 😶 🫥 😏 😒 🙄 😬 🤥 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 🥵 🥶 🥴 😵 🤯 🤠 🥳 🥸 😎 🤓 🧐 😕 🫤 😟 🙁 ☹️ 😮 😯 😲 😳 🥺 🥹 😦 😧 😨 😰 😥 😢 😭 😱 😖 😣 😞 😓 😩 😫 🥱 😤 😡 😠 🤬 😈 👿 💀 ☠️ 💩 🤡 👻 👽 👾 🤖 🎃".split(" "),
+Hearts:"❤️ 🧡 💛 💚 💙 🩵 💜 🤎 🖤 🩶 🤍 💔 ❤️‍🔥 ❤️‍🩹 💕 💞 💓 💗 💖 💘 💝 💟 ❣️".split(" "),
+Animals:"🐶 🐱 🐭 🐹 🐰 🦊 🐻 🐼 🐻‍❄️ 🐨 🐯 🦁 🐮 🐷 🐸 🐵 🙈 🙉 🙊 🐒 🐔 🐧 🐦 🐤 🦆 🦅 🦉 🦇 🐺 🐗 🐴 🦄 🐝 🪱 🦋 🐌 🐞 🐜 🪰 🪲 🪳 🦟 🦗 🕷️ 🦂 🐢 🐍 🦎 🐙 🦑 🦀 🦞 🦐 🦈 🐬 🐳 🐋 🐟 🐠 🐡 🐊 🐅 🐆 🦓 🦍 🦧 🐘 🦛 🦏 🐪 🐫 🦒 🦘 🦬 🐃 🐂 🐄 🐎 🐖 🐏 🐑 🦙 🐐 🦌 🐕 🐩 🦮 🐈 🐓 🦃 🦚 🦜 🦢 🦩 🕊️ 🐇 🦝 🦨 🦡 🦦 🦥 🐁 🐀 🐿️ 🦔 🐾".split(" "),
+Food:"🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍈 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🫒 🥑 🍆 🥔 🥕 🌽 🌶️ 🫑 🥒 🥬 🥦 🧄 🧅 🍄 🥜 🌰 🍞 🥐 🥖 🫓 🥨 🥯 🥞 🧇 🧀 🍖 🍗 🥩 🥓 🍔 🍟 🍕 🌭 🥪 🌮 🌯 🫔 🥙 🧆 🥚 🍳 🥘 🍲 🫕 🥣 🥗 🍿 🧈 🧂 🥫 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🥮 🍡 🥟 🥠 🥡 🦪 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🧁 🥧 🍫 🍬 🍭 🍮 🍯 🍼 🥛 ☕ 🫖 🍵 🧃 🥤 🧋 🍶 🍺 🍻 🥂 🍷 🥃 🍸 🍹 🧉 🧊".split(" "),
+Nature:"🌍 🌎 🌏 🌐 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 ☀️ 🌝 🌞 ⭐ 🌟 🌠 ☁️ ⛅ 🌤️ 🌥️ 🌦️ 🌧️ ⛈️ 🌩️ 🌨️ ❄️ ☃️ ⛄ 🌬️ 💨 🌪️ 🌫️ 🌈 ☂️ ☔ ⚡ 🔥 💧 🌊 🌳 🌲 🌴 🌵 🌱 🌿 ☘️ 🍀 🎍 🪴 🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻".split(" "),
+Activities:"⚽ 🏀 🏈 ⚾ 🥎 🎾 🏐 🏉 🥏 🎱 🪀 🏓 🏸 🏒 🏑 🥍 🏏 🪃 🥅 ⛳ 🪁 🏹 🎣 🤿 🥊 🥋 🎽 🛹 🛼 🛷 ⛸️ 🥌 🎿 ⛷️ 🏂 🪂 🏋️ 🤼 🤸 ⛹️ 🤺 🤾 🏌️ 🏇 🧘 🏄 🏊 🚴 🚵 🎮 🕹️ 🎲 ♟
